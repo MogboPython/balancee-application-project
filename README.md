@@ -1,6 +1,6 @@
-# balancee-application-project
+# Balancee Project
 
-I built this project for [Balanceè](https://balancee.app/)'s internship [application](https://knotty-attention-bd2.notion.site/Apply-here-67dd0c4a8e9b41a4bbacbe853fe8a3ad) using Spring Boot and it provides a REST API for managing customer rewards and cashback transactions.
+I built this project for [Balanceè](https://balancee.app/)'s internship [application](https://knotty-attention-bd2.notion.site/Apply-here-67dd0c4a8e9b41a4bbacbe853fe8a3ad) using Spring Boot. It provides a REST API for managing customer rewards and cashback transactions.
 
 ## Getting Started
 1. [Setup and Running the Project](#setup-and-running-the-project)
@@ -24,7 +24,7 @@ I built this project for [Balanceè](https://balancee.app/)'s internship [applic
    ```
    cd balancee-application-project
    ```
-   
+
 3. Change rename the file`src/main/resources/application.properties.examples` to `src/main/resources/application.properties`
 
 4. Then configure the database connection:
