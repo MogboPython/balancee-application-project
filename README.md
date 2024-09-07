@@ -24,20 +24,22 @@ I built this project for [Balanceè](https://balancee.app/)'s internship [applic
    ```
    cd balancee-application-project
    ```
+   
+3. Change rename the file`src/main/resources/application.properties.examples` to `src/main/resources/application.properties`
 
-3. Configure the database connection in `src/main/resources/application.properties`:
+4. Then configure the database connection:
    ```
    spring.datasource.url=jdbc:mysql://localhost:3306/rewards_db
    spring.datasource.username=your_username
    spring.datasource.password=your_password
    ```
 
-4. Build the project:
+5. Build the project:
    ```
    mvn clean install
    ```
 
-5. Run the application:
+6. Run the application:
    ```
    mvn spring-boot:run
    ```
