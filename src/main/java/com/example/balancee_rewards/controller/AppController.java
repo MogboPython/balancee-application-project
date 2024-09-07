@@ -16,9 +16,7 @@ import java.util.List;
 
 
 // TODO: Specify how user id should be sent 
-// TODO: Remove application.properties from gitignore
 // TODO: data validation and error handling, unit tests too
-// TODO: Add abi update the balances
 // Data Validation: Implement data validation mechanisms in your service layer. Leverage validation annotations 
 // such as @NotBlank, @NotNull, or custom validations based on your requirements.
 @RestController

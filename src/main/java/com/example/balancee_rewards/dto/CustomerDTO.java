@@ -3,21 +3,21 @@ package com.example.balancee_rewards.dto;
 import java.math.BigDecimal;
 
 public class CustomerDTO {
-    private String transactionId;
+    private String customerId;
     private BigDecimal totalCashback;
     private BigDecimal currentBalance;
 
     public CustomerDTO(){
     }
 
-    public CustomerDTO(String transactionId, BigDecimal totalCashback, BigDecimal currentBalance) {
-        this.transactionId = transactionId;
+    public CustomerDTO(String customerId, BigDecimal totalCashback, BigDecimal currentBalance) {
+        this.customerId = customerId;
         this.totalCashback = totalCashback;
         this.currentBalance = currentBalance;
     }
 
-    public String getTransactionId() {
-        return transactionId;
+    public String getCustomerId() {
+        return customerId;
     }
 
     public BigDecimal getCurrentBalance() {
@@ -28,8 +28,8 @@ public class CustomerDTO {
         return totalCashback;
     }
 
-    public void setTransactionId(String transactionId) {
-        this.transactionId = transactionId;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public void setCurrentBalance(BigDecimal currentBalance) {
