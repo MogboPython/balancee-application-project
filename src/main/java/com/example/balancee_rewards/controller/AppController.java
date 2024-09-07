@@ -4,14 +4,23 @@ import com.example.balancee_rewards.dto.CashbackTransactionDTO;
 import com.example.balancee_rewards.exception.CustomerNotFoundException;
 import com.example.balancee_rewards.model.*;
 import com.example.balancee_rewards.service.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.RoundingMode;
 import java.util.List;
 
+
+// TODO: Specify how user id should be sent 
+// TODO: Remove application.properties from gitignore
+// TODO: data validation and error handling, unit tests too
+// TODO: Add abi update the balances
+// Data Validation: Implement data validation mechanisms in your service layer. Leverage validation annotations 
+// such as @NotBlank, @NotNull, or custom validations based on your requirements.
 @RestController
 @RequestMapping("/api/rewards")
 @Validated
@@ -28,11 +37,15 @@ public class AppController {
 
     @PostMapping("/customer_info")
     public ResponseEntity<Customer> saveCustomerInfo(@RequestBody Customer customer_info) {
+        customer_info.setCurrentBalance(customer_info.getCurrentBalance().setScale(2, RoundingMode.HALF_UP));
+        customer_info.setTotalCashback(customer_info.getTotalCashback().setScale(2, RoundingMode.HALF_UP));
         Customer newCustomer = customerAppService.saveCustomerInfo(customer_info);
         return ResponseEntity.ok(newCustomer);
     }
+
     @PostMapping("/add_transaction")
     public ResponseEntity<CashbackTransaction> saveTransaction(@RequestBody CashbackTransaction transaction) {
+        transaction.setAmountEarned(transaction.getAmountEarned().setScale(2, RoundingMode.HALF_UP));
         CashbackTransaction newTransaction = transactionAppService.saveTransaction(transaction);
         return ResponseEntity.ok(newTransaction);
     }
@@ -58,7 +71,6 @@ public class AppController {
         }
     }
 
-    // TODO: Specify how user id should be sent 
     @GetMapping("/history/{id}")
     public ResponseEntity<ResponseWrapper<Object>> getTransactionsByCustomerId(@PathVariable String id) {
         try {

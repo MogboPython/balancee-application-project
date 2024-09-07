@@ -1,21 +1,24 @@
 package com.example.balancee_rewards.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class CashbackTransactionDTO {
     private String transactionId;
-    private Double amountEarned;
+    private BigDecimal amountEarned;
     private LocalDateTime transactionDate;
     private String customerId;
+    private String description;
 
     public CashbackTransactionDTO() {
     }
 
-    public CashbackTransactionDTO(String transactionId, Double amountEarned, LocalDateTime transactionDate, String customerId) {
+    public CashbackTransactionDTO(String transactionId, BigDecimal amountEarned, LocalDateTime transactionDate, String customerId, String description) {
         this.transactionId = transactionId;
         this.amountEarned = amountEarned;
         this.transactionDate = transactionDate;
         this.customerId = customerId;
+        this.description = description;
     }
 
     // Getters
@@ -23,7 +26,7 @@ public class CashbackTransactionDTO {
         return transactionId;
     }
 
-    public Double getAmountEarned() {
+    public BigDecimal getAmountEarned() {
         return amountEarned;
     }
 
@@ -35,12 +38,16 @@ public class CashbackTransactionDTO {
         return customerId;
     }
 
+    public String getDescription(){
+        return description;
+    }
+
     // Setters
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
 
-    public void setAmountEarned(Double amountEarned) {
+    public void setAmountEarned(BigDecimal amountEarned) {
         this.amountEarned = amountEarned;
     }
 
@@ -50,5 +57,9 @@ public class CashbackTransactionDTO {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public void setDescription(String description){
+        this.description = description;
     }
 }

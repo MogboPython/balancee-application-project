@@ -1,5 +1,6 @@
 package com.example.balancee_rewards.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 import jakarta.persistence.*;
 
@@ -11,11 +12,12 @@ public class Customer {
     @Column(name = "customer_id", unique = true, nullable = false)
     private String customerId;
 
+    // using BigDecimal because we are dealing with number
     @Column(name = "total_cashback", nullable = false)
-    private Double totalCashback;
+    private BigDecimal totalCashback;
 
     @Column(name = "current_balance", nullable = false)
-    private Double currentBalance;
+    private BigDecimal currentBalance;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CashbackTransaction> transactions;
@@ -23,7 +25,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long id, String customerId, Double totalCashback, Double currentBalance) {
+    public Customer(Long id, String customerId, BigDecimal totalCashback, BigDecimal currentBalance) {
         this.customerId = customerId;
         this.totalCashback = totalCashback;
         this.currentBalance = currentBalance;
@@ -34,11 +36,11 @@ public class Customer {
         return customerId;
     }
 
-    public Double getTotalCashback() {
+    public BigDecimal getTotalCashback() {
         return totalCashback;
     }
 
-    public Double getCurrentBalance() {
+    public BigDecimal getCurrentBalance() {
         return currentBalance;
     }
 
@@ -47,11 +49,11 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    public void setTotalCashback(Double totalCashback) {
+    public void setTotalCashback(BigDecimal totalCashback) {
         this.totalCashback = totalCashback;
     }
 
-    public void setCurrentBalance(Double currentBalance) {
+    public void setCurrentBalance(BigDecimal currentBalance) {
         this.currentBalance = currentBalance;
     }
 }

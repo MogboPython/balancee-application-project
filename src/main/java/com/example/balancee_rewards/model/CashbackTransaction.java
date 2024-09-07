@@ -1,7 +1,11 @@
 package com.example.balancee_rewards.model;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "cashback_transactions")
@@ -13,13 +17,14 @@ public class CashbackTransaction {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Customer customer;
 
     @Column(name = "transaction_date", nullable = false)
     private LocalDateTime transactionDate;
 
     @Column(name = "amount_earned", nullable = false)
-    private Double amountEarned;
+    private BigDecimal amountEarned;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -27,7 +32,7 @@ public class CashbackTransaction {
     public CashbackTransaction() {
     }
 
-    public CashbackTransaction(String transactionId, Customer customer, LocalDateTime transactionDate, Double amountEarned, String description) {
+    public CashbackTransaction(String transactionId, Customer customer, LocalDateTime transactionDate, BigDecimal amountEarned, String description) {
         this.transactionId = transactionId;
         this.customer = customer;
         this.transactionDate = transactionDate;
@@ -48,7 +53,7 @@ public class CashbackTransaction {
         return transactionDate;
     }
 
-    public Double getAmountEarned(){
+    public BigDecimal getAmountEarned(){
         return amountEarned;
     }
 
@@ -69,7 +74,7 @@ public class CashbackTransaction {
         this.transactionDate = transactionDate;
     }
 
-    public void setAmountEarned(Double amountEarned){
+    public void setAmountEarned(BigDecimal amountEarned){
         this.amountEarned = amountEarned;
     }
 

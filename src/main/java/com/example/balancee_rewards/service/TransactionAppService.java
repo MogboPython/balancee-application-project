@@ -25,24 +25,25 @@ public class TransactionAppService {
     }
 
     public CashbackTransaction saveTransaction(CashbackTransaction transaction) {
+        
+        // check if customer exists
+        final String customer_id = transaction.getCustomer().getCustomerId();
+        Customer customer = customerRepository.findById(customer_id)
+            .orElseThrow(() -> new CustomerNotFoundException(customer_id));
  
+        customer.setTotalCashback(customer.getTotalCashback().add(transaction.getAmountEarned()));
+        customer.setCurrentBalance(customer.getCurrentBalance().add(transaction.getAmountEarned()));
+        customerRepository.save(customer);
+
         // BT - Balancee Transaction
         String ID = "BT_" + IdGenerator.generateId(); 
-
         while(customerRepository.existsById(ID)) {
             ID = "BT_" + IdGenerator.generateId(); 
         }
-        
+       
+        // Set new transaction in database
         transaction.setTransactionId(ID);
         return cashbackTransactionRepository.save(transaction);
-    }
-
-    @Transactional(readOnly = true)
-    public List<CashbackTransaction> getCashbackHistory(String customerId) {
-        if (!customerRepository.existsById(customerId)) {
-            throw new CustomerNotFoundException(customerId);
-        }
-        return cashbackTransactionRepository.findByCustomerCustomerId(customerId);
     }
 
     @Transactional(readOnly = true)
@@ -61,6 +62,7 @@ public class TransactionAppService {
         dto.setAmountEarned(transaction.getAmountEarned());
         dto.setTransactionDate(transaction.getTransactionDate());
         dto.setCustomerId(transaction.getCustomer().getCustomerId());
+        dto.setDescription(transaction.getDescription());
         return dto;
     }
 }
