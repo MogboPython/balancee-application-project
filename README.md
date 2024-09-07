@@ -66,7 +66,7 @@ All endpoints return a ResponseWrapper object containing a status message and th
 
 Request:
 ```http
-GET /api/rewards/balance/{customer_id}
+GET /api/rewards/balance/BC_Y86QR
 ```
 
 Response:
@@ -85,7 +85,7 @@ Response:
 
 Request:
 ```http
-GET /api/rewards/history/{customer_id}
+GET /api/rewards/history/BC_Y86QR
 ```
 
 Response:
