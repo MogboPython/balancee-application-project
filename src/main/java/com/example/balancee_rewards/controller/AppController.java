@@ -15,10 +15,6 @@ import java.math.RoundingMode;
 import java.util.List;
 
 
-// TODO: Specify how user id should be sent 
-// TODO: data validation and error handling, unit tests too
-// Data Validation: Implement data validation mechanisms in your service layer. Leverage validation annotations 
-// such as @NotBlank, @NotNull, or custom validations based on your requirements.
 @RestController
 @RequestMapping("/api/rewards")
 @Validated
